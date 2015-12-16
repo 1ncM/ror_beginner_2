@@ -8,11 +8,12 @@ break if item == "стоп"
   price = gets.chomp.to_f
   puts "введите количество товара"
   quantity = gets.chomp.to_f
-  data[item] = {'price' => price, 'quantity' => quantity}
+  data[item] = {price: price, quantity: quantity}
 end
 
 data.each do |key,value|
-  puts "name: #{key}, price: #{value['price']}, quantity: #{value['quantity']}, amount: #{value['quantity']*value['price']}"
-  cart += value['quantity']*value['price']
+  total = value[:quantity]*value[:price]
+  puts "name: #{key}, price: #{value[:price]}, quantity: #{value[:quantity]}, amount: #{total}"
+  cart += total
 end
 p cart
