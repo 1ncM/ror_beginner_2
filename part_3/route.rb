@@ -10,7 +10,7 @@ class Route
     stations.delete(station)
   end
   def to_s
-  	"Маршрут: #{stations}"
+  	p @stations.map {|i| i.name }
   end
 end
 
