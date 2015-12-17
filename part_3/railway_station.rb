@@ -4,16 +4,16 @@ class RailwayStation
     @name = name
     @trains = []
   end
-  def get_train(train)     
+  def arrive_train(train)     
     trains << train
   end
-  def send_train(train)
+  def departure_train(train)
     trains.delete(train)
   end
   def trains_type(type)         
     trains.each {|i| puts i if i.type == type}
   end
   def to_s
-    "Станция: #{name}, Поезда на станции: #{trains}"
+    "#{name}"
   end
 end
