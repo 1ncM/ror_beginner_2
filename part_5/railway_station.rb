@@ -1,11 +1,13 @@
 class RailwayStation
   attr_reader :name, :trains
+  include InstanceCounter
   @@stations = []
 
   def initialize(name)
     @name = name
     @trains = []
     @@stations << self
+    register_instance
   end
   
   def self.all_stations
