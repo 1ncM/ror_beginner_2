@@ -11,6 +11,7 @@ class Train
     @number = number
     @speed = 0
     @train_number = train_number
+    global_valid_train!(train_number)
     @@trains[train_number] = self
     register_instance
     validate!
@@ -19,7 +20,7 @@ class Train
   def valid?
     validate!
   rescue
-    "Введены не валидные данные"
+    false
   end
 
   def self.find(train_number)
@@ -27,7 +28,8 @@ class Train
   end
 
   def add_wagon(wagon)
-    self.number += 1 if train_stopped? && type_check?(wagon)
+    self.number += 1 if train_stopped? # && type_check?(wagon)
+    valid_wagon(wagon)
   end
 
   def delete_wagon
@@ -59,9 +61,10 @@ protected # в этой секции планируется использова
   # данные атрибуты не должны устанавливаться из вне
   attr_writer :number, :current_station, :route
   # данные методы не должны вызываться из вне
-  def type_check?(wagon)
-    type == wagon.type
-  end
+
+  # def type_check?(wagon)
+  #   type == wagon.type
+  # end
 
   def train_stopped?
     speed.zero?
@@ -81,5 +84,14 @@ protected # в этой секции планируется использова
     raise "invalid number of cars enter no more than 1000" if number > 1000
     raise "train_number not valid!" if train_number !~ TRAIN_FORMAT
     true
+  end
+
+  def valid_wagon(wagon)
+    raise "it is not wagon" if (wagon.class || wagon.class.superclass) != Wagon
+    raise "invalid wagon type" if type != wagon.type
+  end
+  
+  def global_valid_train!(train_number)
+    raise "train already exists" if @@trains.has_key?(train_number)
   end
 end
