@@ -111,47 +111,85 @@ require_relative 'passanger_wagon.rb'
 # end 
 # end
 
-# class Application
+class Application
  
-#   def initialize
-#   	menu
-#   	start
-#   end
+ #@@trains = {}
 
-#   def start
-#   	loop do
-#   	  puts "Введите команду"
-#       command = gets.chomp
-#       break if command == "Exit"
-#     case command
-#       when "_Создать станцию"
-#         create_station
-#       when "_Поместить поезд на станцию"
+  def initialize
+  	start
+  end
 
-#     end
-#   	end
-#   end
+  def start
+  	loop do
+  	  menu
+  	  puts "\n Введите команду"
+      command = gets.chomp
+      break if command == "Стоп"
+    case command
+      when "_Создать поезд"
+        create_train
+      when "_Создать станцию"
+      	create_station
+      when "_Создать маршрут"
+      	create_route
+    end
+  	end
+  end
 
-# private
+private
   
-#   def menu
-#     puts "Список команд: \n _Создать станцию \n _Создать поезд \n _Добавить/Отцепить вагон \n _Поместить поезд на станцию \n _Список станций \n _Список поездов \n _Выйти"
-#   end
+  def menu
+    puts "\n Список команд: \n _Создать станцию \n _Создать поезд \n _Добавить/Отцепить вагон \n _Поместить поезд на станцию \n _Список станций \n _Список поездов \n _Выйти"
+  end
 
-#   def create_station
-#     puts "Создана станция"
-#   end
+  def create_train
+  	puts "  Введите тип поезда (Cargo/Passanger)"
+  	type = gets.chomp.strip.to_sym
+  	puts "	Номер, название, количество вагонов поезда"
+  	train_number,name,number = gets.chomp.split(",")
+  	if type == :Passanger
+      PassangerTrain.new(train_number,name.strip,number.strip.to_i)
+  	  puts "создан поезд, #{Train.find(train_number)}"
+  	elsif type == :Cargo
+      CargoTrain.new(train_number,name.strip,number.strip.to_i)
+      puts "создан поезд, #{Train.find(train_number)}"
+    else
+      puts "Неверный тип поезда"
+    end
+  	rescue Exception => e
+      	puts e
+  end
 
-#   def create_train
-#   end
+  def create_station
+    puts "Введите название станции"
+    station_name = gets.chomp.strip
+    station = RailwayStation.new(station_name)
+    puts "Создана станция #{station}"
+  rescue Exception => e
+  	puts e
+  end
 
-# end
-# Application.new
+  def create_route
+    puts "Введите начальную и конечную станции"
+    first,last = gets.chomp.split(',')
+    route = Route.new(RailwayStation.new(first),RailwayStation.new(last))
+    p "Создан маршрут #{route}"
+  rescue Exception => e
+  	puts e
+  end
+end
+Application.new
 
 # train1 = Train.new(1212,"AKA",10)
-p train = PassangerTrain.new("sss-44","123qwesdf", 345)
-p train.valid?
+# p train = PassangerTrain.new("sss-44","123qwesdf", 345)
+#  tr = CargoTrain.new("sss-34","235wersdfg", 333)
+#  er = CargoTrain.new("sss-34","235wersdfg", 333)
+# p train.valid?
 
+# wag = PassangerWagon.new
+# w = CargoWagon.new
+# p train.add_wagon wag
+# p train.wagons
 
 # st = RailwayStation.new("Perovo")
 # p st.valid?

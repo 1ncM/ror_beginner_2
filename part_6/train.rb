@@ -1,6 +1,6 @@
 class Train
   attr_accessor :speed
-  attr_reader :number, :route, :current_station, :type, :name, :train_number
+  attr_reader :number, :route, :current_station, :type, :name, :train_number, :wagons
   include Company
   include InstanceCounter
   @@trains = {}
@@ -10,6 +10,7 @@ class Train
     @type = type
     @number = number
     @speed = 0
+    @wagons = []
     @train_number = train_number
     global_valid_train!(train_number)
     @@trains[train_number] = self
@@ -28,8 +29,8 @@ class Train
   end
 
   def add_wagon(wagon)
-    self.number += 1 if train_stopped? # && type_check?(wagon)
     valid_wagon(wagon)
+    (self.number += 1) && (self.wagons << wagon) if train_stopped? # && type_check?(wagon)
   end
 
   def delete_wagon
@@ -87,7 +88,7 @@ protected # в этой секции планируется использова
   end
 
   def valid_wagon(wagon)
-    raise "it is not wagon" if (wagon.class || wagon.class.superclass) != Wagon
+    # raise "it is not wagon" if (wagon.class || wagon.class.superclass) != Wagon
     raise "invalid wagon type" if type != wagon.type
   end
   

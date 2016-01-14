@@ -5,10 +5,11 @@ class RailwayStation
 
   def initialize(name)
     @name = name
+    validate!
     @trains = []
     @@stations << self
     register_instance
-    validate!
+
   end
 
   def valid?
@@ -42,7 +43,7 @@ private
 
   def validate!
     raise "invalid name type" if name.class != String
-    raise "long name" if name.size > 10
+    raise "long name" if name.size > 20
     true
   end
 
