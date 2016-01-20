@@ -28,8 +28,8 @@ class Train
     @@trains[train_number]
   end
 
-  def meth(&block)
-      block.call(wagons.each {|i| i})
+  def each_wagon(&block)
+    wagons.each {|i| block.call(i)}
   end
 
   def add_wagon(wagon)
@@ -59,7 +59,7 @@ class Train
   end
 
   def to_s
-    "Номер: #{train_number}, Имя: #{name}, Тип: #{type}, Вагонов: #{number}"
+    "  Номер: #{train_number}, Имя: #{name}, Тип: #{type}, Вагонов: #{number}"
   end
 
 protected # в этой секции планируется использовать в подклассах

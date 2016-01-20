@@ -12,8 +12,8 @@ class RailwayStation
 
   end
 
-  def meth(&block)
-    block.call(trains.each {|i| i})
+  def each_train(&block)
+    trains.each {|i| block.call(i)}
   end
 
   def valid?
@@ -22,12 +22,8 @@ class RailwayStation
     false
   end
   
-  def self.all_stations(&block)
-      block.call(@@stations.each do |i|
-       puts i
-       puts i.trains.each {|k| k}
-       i.trains.each {|l| puts l.wagons}
-     end)
+  def self.all_stations
+    @@stations
   end
 
   def arrive_train(train)     

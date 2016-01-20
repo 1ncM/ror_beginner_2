@@ -230,11 +230,11 @@ require_relative 'passanger_wagon.rb'
 
 station = RailwayStation.new "Perovo"
 station1 = RailwayStation.new "Novogireevo"
-station = RailwayStation.new "Kolokolo"
+station2 = RailwayStation.new "Entuziastov"
  tr = PassangerTrain.new("sss-34","235wersdfg", 333)
  er = PassangerTrain.new("sss-11","235wersdfg", 333)
  wr = CargoTrain.new("sss-04","235wersdfg", 333)
-
+ 
 wagon2 = PassangerWagon.new 45
 wagon3 = PassangerWagon.new 34
 wagon4 = CargoWagon.new 45
@@ -243,13 +243,19 @@ tr.add_wagon wagon2
 er.add_wagon wagon3
 wr.add_wagon wagon4
 wr.add_wagon wagon5
-station.arrive_train tr
+station2.arrive_train tr
 station1.arrive_train er
 station1.arrive_train wr
-# tr.meth {|x| puts x}
-# puts station.trains
 
-RailwayStation.all_stations {|x| x}
+# wr.each_wagon {|x| puts x}
+# station1.each_train {|e| puts e}
+
+RailwayStation.all_stations.each do |i|
+  puts i
+  i.each_train {|t| puts t}
+  i.each_train {|t| t.each_wagon {|w| puts w}}
+end
+
 # station1 = RailwayStation.new "A"
 # station2 = RailwayStation.new "B"
 # station3 = RailwayStation.new "C"

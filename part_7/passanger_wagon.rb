@@ -20,7 +20,7 @@ class PassangerWagon < Wagon
   end
 
   def to_s
-    "Type: #{type} , Busy places: #{busy_places}, Free places: #{free_places}"#, Ovarall volume: #{overall_volume}
+    "    Type: #{type}, Busy places: #{busy_places}, Free places: #{free_places}"#, Ovarall volume: #{overall_volume}
   end
 private
   attr_writer :number_of_seats

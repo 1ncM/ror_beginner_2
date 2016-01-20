@@ -17,7 +17,7 @@ class CargoWagon < Wagon
   end
   
   def to_s
-    "Free volume: #{available_capacity}, Occupied volume: #{occupied_volume}"
+    "    Number: #{rand(100)}, Type: #{type}, Free volume: #{available_capacity}, Occupied volume: #{occupied_volume}"
   end
 
   private 
