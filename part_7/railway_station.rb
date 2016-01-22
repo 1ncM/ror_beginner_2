@@ -9,11 +9,10 @@ class RailwayStation
     @trains = []
     @@stations << self
     register_instance
-
   end
 
-  def each_train(&block)
-    trains.each {|i| block.call(i)}
+  def each_train(&_block)
+    trains.each { |i| yield i }
   end
 
   def valid?
@@ -21,38 +20,37 @@ class RailwayStation
   rescue
     false
   end
-  
+
   def self.all_stations
     @@stations
   end
 
-  def arrive_train(train)     
+  def arrive_train(train)
     trains << train
     valid_arrive(train)
   end
-  
+
   def departure_train(train)
     trains.delete(train)
   end
-  
-  def trains_type(type)         
-    trains.each {|i| puts i if i.type == type}
-  end
-  
-  def to_s
-    "#{name}"
+
+  def trains_type(type)
+    trains.each { |i| puts i if i.type == type }
   end
 
-private
+  def to_s
+    name.to_s
+  end
+
+  private
 
   def validate!
-    raise "invalid name type" if name.class != String
-    raise "long name" if name.size > 20
+    fail 'invalid name type' if name.class != String
+    fail 'long name' if name.size > 20
     true
   end
 
   def valid_arrive(train)
-    raise "invalid train type" if (train.class && train.class.superclass) != Train
+    fail 'invalid train type' if (train.class && train.superclass) != Train
   end
-
 end

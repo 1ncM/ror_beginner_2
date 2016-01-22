@@ -1,6 +1,6 @@
 class PassangerTrain < Train
-  def initialize(train_number,name,number)
+  def initialize(train_number, name, number)
     super
-	@type = :Passanger
+    @type = :Passanger
   end
 end

@@ -2,8 +2,8 @@ class Route
   include InstanceCounter
   attr_reader :stations
 
-  def initialize(first_station,last_station)
-    @stations = [first_station,last_station]
+  def initialize(first_station, last_station)
+    @stations = [first_station, last_station]
     register_instance
     validate!
   end
@@ -24,18 +24,19 @@ class Route
   end
 
   def to_s
-  	p @stations.map {|i| i.name }
+    p @stations.map(&:name)
   end
 
-private 
-  
+  private
+
   def validate!
-    raise "invalid station type" if (stations[0].class && stations[-1].class) != RailwayStation
+    if (stations[0].class && stations[-1].class) != RailwayStation
+      fail 'train type error'
+    end
     true
   end
 
   def valid_station(station)
-    raise "invalid type station" if station.class != RailwayStation
+    fail 'invalid type station' if station.class != RailwayStation
   end
 end
-

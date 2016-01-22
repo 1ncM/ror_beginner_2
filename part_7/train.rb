@@ -1,11 +1,12 @@
 class Train
   attr_accessor :speed
-  attr_reader :number, :route, :current_station, :type, :name, :train_number, :wagons
+  attr_reader :number, :route, :current_station, :type,
+              :name, :train_number, :wagons
   include Company
   include InstanceCounter
   @@trains = {}
   TRAIN_FORMAT = /^([a-z]|\d){3}-?([a-z]|\d){2}$/i
-  def initialize(train_number,name,number)
+  def initialize(train_number, name, number)
     @name = name.strip
     @type = type
     @number = number
@@ -28,20 +29,20 @@ class Train
     @@trains[train_number]
   end
 
-  def each_wagon(&block)
-    wagons.each {|i| block.call(i)}
+  def each_wagon(&_block)
+    wagons.each { |i| yield i }
   end
 
   def add_wagon(wagon)
     valid_wagon(wagon)
-    (self.number += 1) && (self.wagons << wagon) if train_stopped? # && type_check?(wagon)
+    (self.number += 1) && (wagons << wagon) if train_stopped?
   end
 
   def delete_wagon
-    self.number -= 1 if train_stopped? && number>0
+    self.number -= 1 if train_stopped? && number > 0
   end
 
-  def set_route(route)
+  def take_the_route(route)
     self.route = route
     self.current_station = route.stations.first
   end
@@ -59,44 +60,36 @@ class Train
   end
 
   def to_s
-    "  Номер: #{train_number}, Имя: #{name}, Тип: #{type}, Вагонов: #{number}"
+    "Номер: #{train_number}, Имя: #{name}, Тип: #{type}, Вагонов: #{number}"
   end
 
-protected # в этой секции планируется использовать в подклассах
-  # данные атрибуты не должны устанавливаться из вне
-  attr_writer :number, :current_station, :route
-  # данные методы не должны вызываться из вне
+  protected
 
-  # def type_check?(wagon)
-  #   type == wagon.type
-  # end
+  attr_writer :number, :current_station, :route
 
   def train_stopped?
     speed.zero?
   end
 
   def valid_movement?(station)
-    route.stations.include?(station) && 
-    (self.next_station || self.prev_station) == station
+    route.stations.include?(station) &&
+      (next_station || prev_station) == station
   end
 
   def validate!
-    raise "name is the String!" unless name.class == String 
-    raise "empty name!" if name.empty? 
-    raise "long name, please enter no more than 10 characters" if name.size > 10
-    raise "number is the Fixnum!" unless number.class == Fixnum 
-    raise "number must be greater than 0" unless number > 0
-    raise "invalid number of cars enter no more than 1000" if number > 1000
-    raise "train_number not valid!" if train_number !~ TRAIN_FORMAT
+    # fail 'name is the String!' unless name.class == String
+    fail 'empty name!' if name.empty?
+    fail 'number is the Fixnum!' unless number.class == Fixnum
+    fail 'number must be greater than 0' unless number > 0
+    fail 'train_number not valid!' if train_number !~ TRAIN_FORMAT
     true
   end
 
   def valid_wagon(wagon)
-    # raise "it is not wagon" if (wagon.class || wagon.class.superclass) != Wagon
-    raise "invalid wagon type" if type != wagon.type
+    fail 'invalid wagon type' if type != wagon.type
   end
-  
+
   def global_valid_train!(train_number)
-    raise "train already exists" if @@trains.has_key?(train_number)
+    fail 'train already exists' if @@trains.key?(train_number)
   end
 end
