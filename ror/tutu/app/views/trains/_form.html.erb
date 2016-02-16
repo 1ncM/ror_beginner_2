@@ -15,6 +15,10 @@
     <%= f.label :train_number %><br>
     <%= f.number_field :train_number %>
   </div>
+  <div class="field">
+    <%= f.label :route, "Назначить маршрут" %>
+    <%= f.collection_select :route_id, Route.all, :id, :name %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
