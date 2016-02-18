@@ -7,12 +7,12 @@
 
 <p>
   <strong>Список поездов:</strong>
-  <% if @route.trains %>
+  <% if @route.trains.empty?%>
+    На маршруте нет поездов
+  <% else %>
     <% @route.trains.each do |train| %>
       <%= train.train_number %>
-    <% end %>
-  <% else %>
-    На маршруте нет поездов
+      <% end %>
   <% end %>
 </p>
 
