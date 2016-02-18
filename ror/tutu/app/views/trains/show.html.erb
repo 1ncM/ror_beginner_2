@@ -8,11 +8,24 @@
 <p>
   <strong>Маршрут:</strong>
   <% if @train.route.present? %>
-  <%= @train.route.name %>
+    <%= @train.route.name %>
   <% else %>
     Маршрут не назначен
   <%end%>
 </p>
-
+<p>
+  <strong>Количество вагонов:</strong>
+  <% if @train.vagons.empty? %>
+      Нет вагонов
+  <% else %>
+      	<% econom = @train.vagons.select {|vagon| vagon.vagon_type == "Плацкартный"} %>
+      	<% compartment = @train.vagons.select {|vagon| vagon.vagon_type == "Купейный"} %>
+      <ul>
+      	<li> Плацкартных: <%= econom.count %> </li>
+      	Нижних: <% econom.each.inject %>
+      	<li> Купейных: <%= compartment.count %> </li>
+      </ul>
+  <%end%>
+</p>
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>

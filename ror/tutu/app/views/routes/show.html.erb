@@ -7,9 +7,9 @@
 
 <p>
   <strong>Список поездов:</strong>
-  <% if !@route.trains.nil? %>
+  <% if @route.trains %>
     <% @route.trains.each do |train| %>
-    <%= train.train_number %>
+      <%= train.train_number %>
     <% end %>
   <% else %>
     На маршруте нет поездов
