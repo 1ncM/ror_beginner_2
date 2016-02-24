@@ -1,15 +1,6 @@
 <%= form_for(@vagon) do |f| %>
-  <% if @vagon.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@vagon.errors.count, "error") %> prohibited this vagon from being saved:</h2>
+  <%= render 'common/errors', resources: @vagon %>
 
-      <ul>
-      <% @vagon.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= f.label :vagon_number ,"Номер вагона" %><br>
