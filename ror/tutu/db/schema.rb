@@ -33,9 +33,10 @@ ActiveRecord::Schema.define(version: 20160218191112) do
   create_table "tickets", force: :cascade do |t|
     t.integer  "number"
     t.integer  "railway_station_last_id"
+    t.integer  "railway_station_first_id"
+    t.string   "owner"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.integer  "railway_station_first_id"
     t.integer  "user_id"
     t.integer  "train_id"
   end
