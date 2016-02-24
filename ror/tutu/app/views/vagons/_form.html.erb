@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :vagon_type ,"Тип вагона"%><br>
-    <%= f.text_field :vagon_type %>
+    <%= f.select :vagon_type, [['Купейный'], ['Плацкартный']]%>
   </div>
   <div class="field">
     <%= f.label :train, "Указать поезд" %>

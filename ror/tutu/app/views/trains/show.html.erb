@@ -13,19 +13,21 @@
     Маршрут не назначен
   <%end%>
 </p>
+
 <p>
   <strong>Количество вагонов:</strong>
   <% if @train.vagons.empty? %>
-      Нет вагонов
+    Вагонов нет
   <% else %>
-      	<% econom = @train.vagons.select {|vagon| vagon.vagon_type == "Плацкартный"} %>
-      	<% compartment = @train.vagons.select {|vagon| vagon.vagon_type == "Купейный"} %>
-      <ul>
-      	<li> Плацкартных: <%= econom.count %> </li>
-      	Нижних: <% econom.each.inject %>
-      	<li> Купейных: <%= compartment.count %> </li>
-      </ul>
-  <%end%>
+    <ul>
+    <% @train.vagons.each do |vagon| %>
+      <li>Тип:<%= vagon.vagon_type %></li>
+      Верхни мест:<%= vagon.up_seat %>
+      Нижних мест:<%= vagon.down_seat %>
+    <% end %>
+    </ul>
+  <% end %>
 </p>
+
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>

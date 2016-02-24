@@ -11,7 +11,7 @@
     На маршруте нет поездов
   <% else %>
     <% @route.trains.each do |train| %>
-      <%= train.train_number %>
+      <li><%= train.train_number %></li>
       <% end %>
   <% end %>
 </p>
