@@ -1,12 +1,6 @@
 <%= form_for(@ticket) do |f| %>
   <%= render 'common/errors', resources: @ticket %>
 
-
-  <div class="field">
-    <%= f.label :number, 'Номер билета' %><br>
-    <%= f.number_field :number %>
-  </div>
-
   <div class="field">
     <%= f.label :owner, 'Владелец' %><br>
     <%= f.text_field :owner %>
