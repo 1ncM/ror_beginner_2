@@ -5,5 +5,31 @@
   <%= @train.train_number %>
 </p>
 
+<p>
+  <strong>Маршрут:</strong>
+  <% if @train.route.present? %>
+    <%= @train.route.name %>
+  <% else %>
+    Маршрут не назначен
+  <%end%>
+</p>
+
+<p>
+  <strong>Количество вагонов:</strong>
+  <% if @train.vagons.empty? %>
+    Вагонов нет
+  <% else %>
+    <ul>
+      <li>Плацкартных вагонов:<%= @train.vagon_type('Плацкартный').count %></li>
+      <li>Купейных вагонов:<%= @train.vagon_type('Купейный').count %></li>
+      Места:
+      <li>Плацкартные верхние:<%= @train.vagon_type('Плацкартный').sum(:up_seat) %></li>
+      <li>Купейные верхние:<%= @train.vagon_type('Купейный').sum(:up_seat) %></li>
+      <li>Плацкартные нижние:<%= @train.vagon_type('Плацкартный').sum(:down_seat) %></li>
+      <li>Купейные нижние:<%= @train.vagon_type('Купейный').sum(:down_seat) %></li>
+    </ul>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>

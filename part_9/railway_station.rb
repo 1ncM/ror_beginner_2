@@ -51,6 +51,10 @@ class RailwayStation
   end
 
   def valid_arrive(train)
+<<<<<<< HEAD
+    fail 'invalid train type' if (train.class && train.superclass) != Train
+=======
     fail 'invalid train type' if (train.class && train.class.superclass) != Train
+>>>>>>> master
   end
 end

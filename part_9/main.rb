@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 require_relative 'acc.rb'
+>>>>>>> master
 require_relative 'instance_counter.rb'
 require_relative 'company.rb'
 require_relative 'route.rb'
@@ -10,7 +13,10 @@ require_relative 'wagon.rb'
 require_relative 'cargo_wagon.rb'
 require_relative 'passanger_wagon.rb'
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 station1 = RailwayStation.new 'Perovo'
 station2 = RailwayStation.new 'Novogireevo'
 station3 = RailwayStation.new 'Entuziastov'
@@ -30,6 +36,15 @@ station1.arrive_train tr
 station2.arrive_train er
 station3.arrive_train wr
 
+<<<<<<< HEAD
+RailwayStation.all_stations.each do |i|
+  puts i
+  i.each_train do |t|
+    puts t
+    t.each_wagon { |w| puts w }
+  end
+end
+=======
 # RailwayStation.all_stations.each do |i|
 #   puts i
 #   i.each_train do |t|
@@ -43,3 +58,4 @@ p tr.history
 tr.history =1111
 p tr.sdf = 1111
 p tr.sdf
+>>>>>>> master

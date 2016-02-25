@@ -20,16 +20,28 @@ class RailwayStationsController < ApplicationController
       if @railway_station.save
         redirect_to @railway_station
       else
+<<<<<<< HEAD
+        render :new      
+=======
         render :new
+>>>>>>> master
       end
   end
 
   def update
+<<<<<<< HEAD
+      if @railway_station.update(railway_station_params)
+        redirect_to @railway_station      
+      else
+        render :edit      
+      end    
+=======
     if @railway_station.update(railway_station_params)
       redirect_to @railway_station
     else
       render :edit
     end
+>>>>>>> master
   end
 
   def destroy
@@ -38,7 +50,10 @@ class RailwayStationsController < ApplicationController
   end
 
   private
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
     def set_railway_station
       @railway_station = RailwayStation.find(params[:id])
     end

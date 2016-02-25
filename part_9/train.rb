@@ -2,7 +2,10 @@ class Train
   attr_accessor :speed
   attr_reader :number, :route, :current_station, :type,
               :name, :train_number, :wagons
+<<<<<<< HEAD
+=======
   extend MyAccessor
+>>>>>>> master
   include Company
   include InstanceCounter
   @@trains = {}
