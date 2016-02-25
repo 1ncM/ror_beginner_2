@@ -18,7 +18,11 @@ class TrainsController < ApplicationController
   def create
     @train = Train.new(train_params)
       if @train.save
+<<<<<<< HEAD
         redirect_to @train
+=======
+        redirect_to @train 
+>>>>>>> master
       else
         render :new
       end
