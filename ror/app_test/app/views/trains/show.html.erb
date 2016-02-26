@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @train.number %>
+</p>
+<p>
+  <strong>Поезд на маршруте:</strong>
+  <% if @train.route.present? %>
+    <%= @train.route.name %>
+  <% else %>
+    Маршрут не указан
+  <% end %>
+</p>
+
+<p>
+  <strong>Количество вагонов:</strong>
+  <% if @train.wagons.empty? %>
+    Вагонов нет
+  <% else %>
+    <ul>
+    <% @train.wagons.each do |wagon| %>
+      <li>Тип:<%= wagon.wagon_type %></li>
+      Верхни мест:<%= wagon.up_seats %>
+      Нижних мест:<%= wagon.down_seats %>
+    <% end %>
+    </ul>
+  <% end %>
+</p>
+<%= link_to 'Edit', edit_train_path(@train) %> |
+<%= link_to 'Back', trains_path %>
