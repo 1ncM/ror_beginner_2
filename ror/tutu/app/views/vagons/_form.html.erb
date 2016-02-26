@@ -1,0 +1,28 @@
+<%= form_for(@vagon) do |f| %>
+  <%= render 'common/errors', resources: @vagon %>
+
+
+  <div class="field">
+    <%= f.label :vagon_number ,"Номер вагона" %><br>
+    <%= f.number_field :vagon_number %>
+  </div>
+  <div class="field">
+    <%= f.label :vagon_type ,"Тип вагона"%><br>
+    <%= f.select :vagon_type, [['Купейный'], ['Плацкартный']]%>
+  </div>
+  <div class="field">
+    <%= f.label :train, "Указать поезд" %>
+    <%= f.collection_select :train_id, Train.all, :id, :train_number %>
+  </div>
+  <div class="field">
+    <%= f.label :up_seat ,"Верхних мест"%><br>
+    <%= f.number_field :up_seat %>
+  </div>
+  <div class="field">
+    <%= f.label :down_seat ,"Нижних мест"%><br>
+    <%= f.number_field :down_seat %>
+  </div>
+  <div class="actions">
+    <%= f.submit "#{@vagon.new_record? ? 'Создать вагон' : 'Обновить вагон'}" %>
+  </div>
+<% end %>

@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+ #footer {
+  height: 2.5em;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
