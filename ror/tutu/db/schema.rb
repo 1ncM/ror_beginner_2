@@ -55,12 +55,15 @@ ActiveRecord::Schema.define(version: 20160218191112) do
   end
 
   create_table "vagons", force: :cascade do |t|
-    t.integer  "vagon_number"
-    t.string   "vagon_type"
+    t.integer  "number"
     t.integer  "up_seat"
     t.integer  "down_seat"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "side_up_seat"
+    t.integer  "side_down_seat"
+    t.integer  "seat_place"
+    t.string   "type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "train_id"
   end
 
