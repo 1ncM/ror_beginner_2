@@ -1,8 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Название:</strong>
   <%= @route.name %>
+</p>
+
+<p>
+  <strong>Станции в маршруте:</strong>
+</p>
+
+<p>
+  <% if @route.railway_stations.empty? %>
+    Список пуск
+  <% else %>
+    <ul>
+      <% @route.railway_stations.each do |station| %>
+        <li><%= station.title %></li>
+      <% end %>
+    </ul>
+  <% end %>
 </p>
 
 <p>
