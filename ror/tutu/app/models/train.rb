@@ -7,4 +7,5 @@ class Train < ActiveRecord::Base
   def vagon_type(type)
     vagons.where(vagon_type: type)
   end
+
 end

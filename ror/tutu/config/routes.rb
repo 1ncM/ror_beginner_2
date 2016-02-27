@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :routes
   resources :vagons
   resources :tickets
+  resources :economy_carriages, :coupe_carriages, :luxury_carriages, :sedentary_carriages, :controller => 'vagons'
   root 'railway_stations#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,3 +1,3 @@
 class LuxuryCarriage < Vagon
-  validates :down_seat, presence: true
+  validates :seat_place, presence: true
 end
