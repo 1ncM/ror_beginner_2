@@ -8,6 +8,31 @@
   <strong>Тип вагона:</strong>
   <%= @vagon.type %>
 </p>
+<p>
+  <strong>Количество мест:</strong>
+  <ul>
+    <%if @vagon.up_seat %>
+        <li>Верхних <%= @vagon.up_seat %></li>
+    <%end %>
+
+    <%if @vagon.down_seat %>
+        <li>Нижних <%= @vagon.down_seat %></li>
+    <%end %>
+
+    <%if @vagon.side_up_seat %>
+        <li>Верхних боковых <%= @vagon.side_up_seat %></li>
+    <%end %>
+
+    <%if @vagon.side_down_seat %>
+        <li>Нижних боковых <%= @vagon.side_down_seat %></li>
+    <%end %>
+
+    <%if @vagon.seat_place %>
+        <li>Сидячие <%= @vagon.seat_place %></li>
+    <%end %>
+  </ul>
+
+</p>
 
 <%= link_to 'Редактировать', edit_vagon_path(@vagon) %> |
 <%= link_to 'Назад', vagons_path %>

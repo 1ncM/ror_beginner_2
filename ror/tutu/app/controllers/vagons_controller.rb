@@ -43,6 +43,15 @@ class VagonsController < ApplicationController
 private
 
   def vagon_params
+     if params.has_key?(:economy_carriage)
+        params[:vagon] = params.delete(:economy_carriage)
+      elsif params.has_key?(:luxury_carriage)
+        params[:vagon] = params.delete(:luxury_carriage)
+      elsif params.has_key?(:coupe_carriage)
+        params[:vagon] = params.delete(:coupe_carriage)
+      elsif params.has_key?(:sedentary_carriage)
+        params[:vagon] = params.delete(:sedentary_carriage)
+      end
   	params.require(:vagon).permit(:number, :type, :train_id, :up_seat, :down_seat, :side_up_seat, :side_down_seat, :seat_place)
   end
 end 

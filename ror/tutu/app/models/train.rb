@@ -3,9 +3,7 @@ class Train < ActiveRecord::Base
   has_many :tickets
   has_many :vagons
   validates :train_number, presence: true, uniqueness: true
-  
   def vagon_type(type)
-    vagons.where(vagon_type: type)
+    vagons.where(type: type)
   end
-
 end

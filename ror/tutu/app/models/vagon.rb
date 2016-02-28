@@ -1,12 +1,18 @@
 class Vagon < ActiveRecord::Base
   belongs_to :train
-  before_validation :set_number
+  validates :number, presence: true, uniqueness: { scope: :train_id }
+  # validate :valid_number
+  after_validation :set_number
   private
 
   def set_number
-  	self.number = self.class.all.count.to_i + 1
+    last_number = train.vagons.maximum(:number) || 0
+    self.number = last_number + 1
   end
 
-  def valid_number
-  end
+  # def valid_number
+  # 	if self.train.vagons.include?(self.number)
+  # 	  'Такой вагон существует'
+  # 	end
+  # end
 end
