@@ -9,7 +9,7 @@
   <% if @train.route.present? %>
     <%= @train.route.name %>
   <% else %>
-    Маршрут не указан
+    Маршрут не назначен
   <% end %>
 </p>
 
@@ -19,11 +19,12 @@
     Вагонов нет
   <% else %>
     <ul>
-    <% @train.wagons.each do |wagon| %>
-      <li>Тип:<%= wagon.wagon_type %></li>
-      Верхни мест:<%= wagon.up_seats %>
-      Нижних мест:<%= wagon.down_seats %>
-    <% end %>
+      <li>Плацкартных:<%= @train.wagon_type('Плацкартный').count %></li>
+      Верхних мест:<%= @train.wagon_type('Плацкартный').sum(:up_seats) %>
+      Нижних мест:<%= @train.wagon_type('Плацкартный').sum(:down_seats) %>
+      <li>Купейных:<%= @train.wagon_type('Купейный').count %></li>
+      Верхних мест:<%= @train.wagon_type('Купейный').sum(:up_seats) %>
+      Нижних мест:<%= @train.wagon_type('Купейный').sum(:down_seats) %>
     </ul>
   <% end %>
 </p>

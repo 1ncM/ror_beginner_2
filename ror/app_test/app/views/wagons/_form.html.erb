@@ -1,20 +1,10 @@
 <%= form_for(@wagon) do |f| %>
-  <% if @wagon.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@wagon.errors.count, "error") %> prohibited this wagon from being saved:</h2>
+  <%= render 'common/errors', resources: @wagon %>
 
-      <ul>
-      <% @wagon.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+<!--   <div class="field">
     <%= f.label :number, 'Номер вагона'%><br>
     <%= f.number_field :number %>
-  </div>
+  </div> -->
 
   <div class="field">
     <%= f.label :train_id, 'Укажите поезд:'%><br>
@@ -37,6 +27,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit @wagon.new_record? ? 'Создать' : 'Обновить' %>
   </div>
 <% end %>

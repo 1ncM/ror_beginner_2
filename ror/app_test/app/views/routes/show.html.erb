@@ -17,5 +17,18 @@
     <% end %>
   <% end %>
 </p>
+
+<p>
+  <strong>Список станций в маршруте:</strong>
+  <% if @route.railway_stations.empty? %>
+    На маршруте нет поездов
+  <% else %>
+    <% @route.railway_stations.each do |rws|%>
+      <ul>
+        <li><%= # %> </li>
+      </ul>
+    <% end %>
+  <% end %>
+</p>
 <%= link_to 'Редактировать', edit_route_path(@route) %> |
 <%= link_to 'Назад', routes_path %>
