@@ -19,15 +19,25 @@
 </p>
 
 <p>
-  <strong>Список станций в маршруте:</strong>
+  <strong>Станции в маршруте:</strong>
   <% if @route.railway_stations.empty? %>
-    На маршруте нет поездов
+    В маршруте нет станций
   <% else %>
-    <% @route.railway_stations.each do |rws|%>
-      <ul>
-        <li><%= # %> </li>
-      </ul>
-    <% end %>
+    <table>
+      <thead>
+        <tr>
+          <td width="100px">Название</td>
+          <td>Позиция</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @route.railway_stations.each do |station| %>
+          <tr>
+            <td><%= station.name %></td>
+          </tr> 
+        <% end %>
+      </tbody>
+    </table>
   <% end %>
 </p>
 <%= link_to 'Редактировать', edit_route_path(@route) %> |
