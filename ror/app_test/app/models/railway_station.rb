@@ -6,4 +6,8 @@ class RailwayStation < ActiveRecord::Base
     station_route = routes_stations.where(route: route).first
     station_route.update(position: position) if station_route
   end
+
+  def position_in(route)
+    station_route.try(:position)
+  end
 end
