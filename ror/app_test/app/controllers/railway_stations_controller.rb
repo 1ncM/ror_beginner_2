@@ -61,6 +61,11 @@ class RailwayStationsController < ApplicationController
     end
   end
 
+  def update_position
+    @route = Route.find(params[:route_id])
+    redirect_to @route
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_railway_station
