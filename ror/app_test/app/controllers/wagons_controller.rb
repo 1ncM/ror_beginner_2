@@ -12,7 +12,7 @@ class WagonsController < ApplicationController
   end
 
   def create
-    @wagon = Wagon.create(wagon_params)
+    @wagon = Wagon.new(wagon_params)
     if @wagon.save
       redirect_to @wagon
     else
@@ -43,6 +43,15 @@ private
   end
 
   def wagon_params
-    params.require(:wagon).permit(:number, :train_id, :wagon_type, :up_seats, :down_seats)
+    if params.has_key?(:economy_carriage)
+      params[:wagon] = params.delete(:economy_carriage)
+    elsif params.has_key?(:sw_carriage)
+      params[:wagon] = params.delete(:sw_carriage)
+    elsif params.has_key?(:coupe_carriage)
+      params[:wagon] = params.delete(:coupe_carriage)
+    elsif params.has_key?(:sedentary_carriage)
+      params[:wagon] = params.delete(:sedentary_carriage)
+    end
+    params.require(:wagon).permit(:number, :train_id, :type, :up_seats, :down_seats, :side_top_seats, :side_bottom_seats, :seat_place)
   end
 end

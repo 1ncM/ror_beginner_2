@@ -11,7 +11,9 @@
   </thead>
 
   <tbody>
-      <%= render @wagons %>
+    <% @wagons.each do |wagon| %>
+      <%= render partial: 'wagon', locals: {wagon: wagon} %>
+    <% end %>  
   </tbody>
 </table>
 

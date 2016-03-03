@@ -4,6 +4,34 @@
   <strong>Номер:</strong>
   <%= @wagon.number %>
 </p>
+<p>
+  <strong>Тип вагона:</strong>
+  <%= @wagon.type %>
+</p>
+<p>
+  <strong>Количество мест:</strong>
+  <ul>
+    <%if @wagon.up_seats %>
+        <li>Верхних <%= @wagon.up_seats %></li>
+    <%end %>
+
+    <%if @wagon.down_seats %>
+        <li>Нижних <%= @wagon.down_seats %></li>
+    <%end %>
+
+    <%if @wagon.side_top_seats %>
+        <li>Верхних боковых <%= @wagon.side_top_seats %></li>
+    <%end %>
+
+    <%if @wagon.side_bottom_seats %>
+        <li>Нижних боковых <%= @wagon.side_bottom_seats %></li>
+    <%end %>
+
+    <%if @wagon.seat_place %>
+        <li>Сидячие <%= @wagon.seat_place %></li>
+    <%end %>
+  </ul>
+</p>
 
 <%= link_to 'Редактировать', edit_wagon_path(@wagon) %> |
 <%= link_to 'Назад', wagons_path %>

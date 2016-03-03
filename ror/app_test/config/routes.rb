@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   resources :users
   resources :routes
   resources :wagons
+  resources :economy_carriages,
+            :coupe_carriages,
+            :sw_carriages,
+            :sedentary_carriages,
+            :controller => 'wagons'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
