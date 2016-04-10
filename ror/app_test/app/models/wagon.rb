@@ -6,6 +6,8 @@ class Wagon < ActiveRecord::Base
   before_validation :set_number
 
   # default_scope { order(:number) }
+  scope :ordered_asc , -> { order(number: :asc)}
+  scope :ordered_desc , -> { order(number: :desc)}
   private
 
   def set_number

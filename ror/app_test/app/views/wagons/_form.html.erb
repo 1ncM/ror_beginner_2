@@ -1,10 +1,10 @@
-<%= form_for(@wagon) do |f| %>
+<%= form_for [@train, @wagon] do |f| %>
   <%= render 'common/errors', resources: @wagon %>
 
-<!--   <div class="field">
+  <div class="field">
     <%= f.label :number, 'Номер вагона'%><br>
     <%= f.number_field :number %>
-  </div> -->
+  </div>
 
   <div class="field">
     <%= f.label :train_id, 'Укажите поезд:'%><br>

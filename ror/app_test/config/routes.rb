@@ -1,18 +1,20 @@
 Rails.application.routes.draw do
   root 'welcome#index'
   resources :tickets
-  resources :trains
+  resources :trains do 
+      resources :wagons
+      resources :economy_carriages,
+                :coupe_carriages,
+                :sw_carriages,
+                :sedentary_carriages,
+                :controller => 'wagons'
+  end
   resources :railway_stations do
     patch :update_position, on: :member
   end
   resources :users
   resources :routes
-  resources :wagons
-  resources :economy_carriages,
-            :coupe_carriages,
-            :sw_carriages,
-            :sedentary_carriages,
-            :controller => 'wagons'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

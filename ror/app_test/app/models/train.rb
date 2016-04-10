@@ -4,6 +4,6 @@ class Train < ActiveRecord::Base
   has_many :wagons
 
   def wagon_type(type)
-    wagons.where(wagon_type: type)
+    wagons.where(type: type)
   end
 end
