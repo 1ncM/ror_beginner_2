@@ -1,2 +1,37 @@
+<h1>Страница поиска</h1>
 <%= form_tag search_path, method: :get do %>
+  <%= select_tag :arrive_station, options_from_collection_for_select( RailwayStation.all, "id", "name", @arrive_station.try(:id)) %>
+   <%= select_tag :departure_station, options_from_collection_for_select( RailwayStation.all, "id", "name", @departure_station.try(:id)) %>
+   <%= submit_tag 'Искать' %>
 <% end %>
+
+ <% if @arrive_station && @departure_station %>
+    <table class="table">
+      <thead>
+        <th width="100px">Поезд</th>
+        <th width="200px">Маршрут</th>
+        <th width="100px">Время отправления</th>
+        <th width="100px">Время прибытия</th>
+      </thead>
+      <tbody>
+        <% @routes.each do |route| %>
+            <% route.trains.each do |train| %>
+                <tr>
+                    <td>
+                      <%= train.number %>
+                    </td>
+                    <td>
+                      <%= route.name %>
+                    </td>
+                    <td>
+                        <%= @departure_station.departure_time(route) %>
+                    </td>
+                    <td>
+                        <%= @arrive_station.arrive_time(route) %>
+                    </td>
+                </tr>
+            <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
