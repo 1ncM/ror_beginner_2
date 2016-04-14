@@ -64,6 +64,8 @@ class RailwayStationsController < ApplicationController
   def update_position
     @route = Route.find(params[:route_id])
     @railway_station.update_position(@route, params[:position])
+    @railway_station.update_arrive_time(@route, params[:arrive_time])
+    @railway_station.update_departure_time(@route, params[:departure_time])
     redirect_to @route
   end
 
@@ -75,6 +77,6 @@ class RailwayStationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def railway_station_params
-      params.require(:railway_station).permit(:name)
+      params.require(:railway_station).permit(:name, :arrive_time, :departure_time)
     end
 end

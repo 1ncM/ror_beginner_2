@@ -25,22 +25,23 @@
   <% else %>
     <table>
       <thead>
-        <tr>
-          <td width="100px">Название</td>
-          <td>Позиция</td>
-        </tr>
+          <th>Название</th>
+          <th>Позиция</th>
+          <th>Время прибытия</th>
+          <th>Время отправления</th> 
+          <th></th>         
       </thead>
       <tbody>
         <% @route.railway_stations.ordered.each do |station| %>
           <tr>
-            <td><%= station.name %></td>
-            <td>
+            <td width="100px"><%= station.name %></td>
               <%= form_tag update_position_railway_station_path(station), method: :patch do %>
-              <%= number_field_tag :position, station.position_in(@route) %>
               <%= hidden_field_tag :route_id, @route.id %>
-              <%= submit_tag 'Изменить' %>
+                <td><%= number_field_tag :position, station.position_in(@route) %></td>
+                <td><%= time_field_tag :arrive_time, station.arrive_time(@route) %></td>
+                <td><%= time_field_tag :departure_time, station.departure_time(@route) %></td>
+                <td><%= submit_tag 'Изменить' %></td>
               <% end %>
-            </td>
           </tr> 
         <% end %>
       </tbody>

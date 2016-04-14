@@ -13,6 +13,24 @@ class RailwayStation < ActiveRecord::Base
     station_route(route).try(:position)
   end
 
+  def departure_time(route)
+    station_route(route).try(:departure_time)
+  end
+
+  def arrive_time(route)
+    station_route(route).try(:arrive_time)
+  end
+
+  def update_departure_time(route, value)
+    obj = station_route(route)
+    obj.update(departure_time:value) if obj
+  end
+
+  def update_arrive_time(route, value)
+    obj = station_route(route)
+    obj.update(arrive_time: value) if obj
+  end
+
   protected
 
   def station_route(route)
