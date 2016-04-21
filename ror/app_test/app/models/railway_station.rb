@@ -31,10 +31,18 @@ class RailwayStation < ActiveRecord::Base
     obj.update(arrive_time: value) if obj
   end
 
+  def update_times(route, arrive_time, departure_time)
+    update_arrive_time(route, arrive_time)
+    update_departure_time(route, departure_time)
+  end
+
   protected
 
   def station_route(route)
-  	@station_route ||= routes_stations.where(route: route).first
+    if @station_route.try(:route)!=route
+  	  @station_route ||= routes_stations.where(route: route).first
+    end
+    @station_route
   end
 
 end

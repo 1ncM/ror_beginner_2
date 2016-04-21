@@ -1,9 +1,28 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Number:</strong>
-  <%= @ticket.number %>
+  <strong>Текущий поезд:</strong>
+  <%= @ticket.train.number %>
 </p>
 
-<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
-<%= link_to 'Back', tickets_path %>
+<p>
+  <strong>Начальная станция:</strong>
+  <%= @ticket.first_station.name %>
+</p>
+
+<p>
+  <strong>Конечная станция:</strong>
+  <%= @ticket.last_station.name %>
+</p>
+
+<p>
+  <strong>Владелец:</strong>
+  <%= @ticket.owner %>
+</p>
+
+<p>
+  <strong>Паспорт:</strong>
+  <%= @ticket.passport %>
+</p>
+
+<%= link_to 'Back', user_tickets_path %>

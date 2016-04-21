@@ -4,6 +4,41 @@
   <strong>Name:</strong>
   <%= @user.name %>
 </p>
+<p>
+  <strong>Купленные билеты</strong>
+</p>
 
+<p>
+  <% if @user.tickets.empty? %>
+      Список пуст
+  <% else %>
+    <table>
+      <thead>
+        <th>№ билета</th>
+        <th>Поезд</th>
+        <th>Станция отправления</th>
+        <th>Станция прибытия</th>
+      </thead>
+      <tbody>
+        <% @user.tickets.each do |ticket| %>
+          <tr>
+            <td>
+              <%= ticket.id %>
+            </td>
+            <td>
+              <%= ticket.train.number %>
+            </td>
+            <td>
+              <%= ticket.first_station.name %>
+            </td>
+            <td>
+              <%= ticket.last_station.name %>
+            </td>
+          </tr>
+        <% end %>
+    </tbody>
+    </table>
+<% end %>
+</p>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
