@@ -6,7 +6,7 @@ class Route < ActiveRecord::Base
   validates :name, presence: true
   validate :stations_count
   before_validation :set_name
-
+  
   private
 
   def set_name

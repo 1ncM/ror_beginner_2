@@ -18,10 +18,15 @@
   <% if @train.wagons.empty? %>
     Вагонов нет
   <% else %>
-    <ul>
+<table>
+  <tr>
+    <td>
       <% @train.wagons.each do |wagon| %>
-      <li><%= link_to wagon.number, [@train, wagon] %></li> 
+      <li><%= link_to "Вагон №#{wagon.number}", [@train, wagon] %></li> 
       <% end %>
+    </td>
+    <td>
+      <ul>
       <li>Плацкартных вагонов:<%= @train.wagon_type('EconomyCarriage').count %></li>
       <li>Купейных вагонов:<%= @train.wagon_type('CoupeCarriage').count %></li>
       <li>Сидячих вагонов:<%= @train.wagon_type('SedentaryCarriage').count %></li>
@@ -32,7 +37,10 @@
       <li>Плацкартные нижние:<%= @train.wagon_type('EconomyCarriage').sum(:down_seats) %></li>
       <li>Купейные нижние:<%= @train.wagon_type('CoupeCarriage').sum(:down_seats) %></li>
       <li>Сидячие:<%= @train.wagon_type('SedentaryCarriage').sum(:seat_place) %></li>
-    </ul>
+      </ul>
+    </td>
+  </tr>
+</table>
   <% end %>     
 </p>
 
